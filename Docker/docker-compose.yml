@@ -1,0 +1,39 @@
+# docker-compose.yml
+version: '3.8'
+services:
+  sdn-controller:
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile.sdn-controller
+    ports:
+      - "6633:6633"
+      - "8080:8080"
+    networks:
+      - sdn-network
+
+  rl-agent:
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile.rl-agent
+    networks:
+      - sdn-network
+
+  ml-model:
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile.ml-model
+    networks:
+      - sdn-network
+
+  mininet:
+    build:
+      context: .
+      dockerfile: Docker/Dockerfile.mininet
+    depends_on:
+      - sdn-controller
+    networks:
+      - sdn-network
+
+networks:
+  sdn-network:
+    driver: bridge

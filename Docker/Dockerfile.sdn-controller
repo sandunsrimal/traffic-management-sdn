@@ -1,0 +1,18 @@
+FROM python:3.9-slim
+
+# Install dependencies
+RUN apt-get update && apt-get install -y \
+    curl net-tools && \
+    pip install --no-cache-dir ryu
+
+WORKDIR /app
+
+# Copy SDN controller files
+COPY sdn_controller /app/sdn_controller
+COPY requirements.txt /app/
+
+# Install Python dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Run the Ryu controller
+CMD ["ryu-manager", "--observe-links", "sdn_controller/controller.py"]

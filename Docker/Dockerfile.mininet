@@ -1,0 +1,13 @@
+FROM ubuntu:20.04
+
+# Install Mininet dependencies
+RUN apt-get update && apt-get install -y \
+    mininet iputils-ping openvswitch-switch
+
+WORKDIR /app
+
+# Copy simulation files
+COPY simulations /app/simulations
+
+# Default command
+CMD ["python3", "/app/simulations/mininet_topology.py"]

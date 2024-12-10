@@ -1,0 +1,14 @@
+FROM python:3.9-slim
+
+RUN apt-get update && apt-get install -y \
+    curl && \
+    pip install --no-cache-dir tensorflow stable-baselines3
+
+WORKDIR /app
+
+COPY rl_agent /app/rl_agent
+COPY requirements.txt /app/
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+CMD ["python", "rl_agent/rl_main.py"]
