@@ -1,5 +1,5 @@
 numpy==1.24.4
-gym==0.21
+gym==0.26.2
 stable-baselines3==1.8.0
 torch==2.0.1
 tensorboard==2.13.0
