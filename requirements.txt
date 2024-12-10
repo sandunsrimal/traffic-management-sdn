@@ -1,6 +1,6 @@
 numpy==1.24.4
-gym==0.26.2
-stable-baselines3==1.8.0
+gym
+stable-baselines3
 torch==2.0.1
 tensorboard==2.13.0
 matplotlib==3.7.3
